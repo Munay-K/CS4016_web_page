@@ -1,0 +1,52 @@
+---
+import { supabase } from '../lib/supabase';
+---
+
+<html>
+  <body>
+    <h1>Computer Graphics Projects</h1>
+    
+    <div id="projects-container">
+      <p>Loading projects...</p>
+    </div>
+
+    <script>
+      // Import Supabase directly in the browser
+      import { supabase } from '../lib/supabase';
+      
+      async function loadProjects() {
+        try {
+          const container = document.getElementById('projects-container');
+          const { data: projects, error } = await supabase
+            .from('projects')
+            .select('*');
+          
+          if (error) throw error;
+          
+          container.innerHTML = `
+            <ul>
+              ${projects.map(project => `
+                <li>
+                  <h2>${project.title}</h2>
+                  <p>By ${project.student_name}</p>
+                </li>
+              `).join('')}
+            </ul>
+          `;
+        } catch (error) {
+          console.error('Failed to load projects:', error);
+          document.getElementById('projects-container').innerHTML = `
+            <p style="color: red;">Error loading projects: ${error.message}</p>
+          `;
+        }
+      }
+      
+      // Start loading when DOM is ready
+      if (document.readyState === 'complete') {
+        loadProjects();
+      } else {
+        document.addEventListener('DOMContentLoaded', loadProjects);
+      }
+    </script>
+  </body>
+</html>
