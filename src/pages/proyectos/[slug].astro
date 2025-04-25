@@ -1,0 +1,17 @@
+---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import ProyectoPage from '../../components/ProyectoPage.astro';
+
+const { slug } = Astro.params;
+const proyecto = await getEntryBySlug('proyectos', slug);
+
+// Función que Astro necesita para construir las rutas
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos');
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.slug },
+  }));
+}
+---
+
+<ProyectoPage proyecto={proyecto} />

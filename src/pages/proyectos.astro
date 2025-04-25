@@ -1,0 +1,33 @@
+---
+import Layout from '../components/base/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProyectoCard from '../components/ProyectoCard.astro';
+
+const proyectos = await getCollection('proyectos');
+const semestres = [...new Set(proyectos.map(p => p.data.semester))];
+---
+
+<Layout>
+  <section class="py-10">
+    <h1 class="text-4xl font-bold mb-8">Proyectos de Estudiantes</h1>
+
+    <div class="flex flex-wrap gap-4 mb-6">
+      {semestres.map(semestre => (
+        <a href={`#${semestre}`} class="btn btn-secondary">{semestre}</a>
+      ))}
+    </div>
+
+    {semestres.map(semestre => (
+      <section id={semestre} class="mb-10">
+        <h2 class="text-2xl font-semibold mb-4">{semestre}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {proyectos
+            .filter(p => p.data.semester === semestre)
+            .map(proyecto => (
+              <ProyectoCard proyecto={proyecto} />
+            ))}
+        </div>
+      </section>
+    ))}
+  </section>
+</Layout>

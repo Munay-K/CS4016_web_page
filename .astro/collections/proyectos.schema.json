@@ -1,0 +1,56 @@
+{
+  "$ref": "#/definitions/proyectos",
+  "definitions": {
+    "proyectos": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grade": {
+          "type": "string"
+        },
+        "presentation_link": {
+          "type": "string"
+        },
+        "documents_link": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "cover": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "semester",
+        "authors",
+        "grade",
+        "presentation_link",
+        "documents_link",
+        "instructions",
+        "cover"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
