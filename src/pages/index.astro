@@ -3,29 +3,26 @@ import Layout from "../layouts/Layout.astro";
 import { SITE_DESCRIPTION } from "../consts";
 ---
 
-<Layout>
-  <div class="prose">
+<Layout title="Inicio">
+  <div class="prose mx-auto">
+    <p>{SITE_DESCRIPTION}</p>
+
     <p>
-      {SITE_DESCRIPTION}
+      <strong>Computación Gráfica</strong> es un curso de cuarto año en la carrera de Computer Science en la <strong>Universidad de Ingeniería y Tecnología (UTEC)</strong>. 
+      Para ver información detallada sobre el curso, puedes consultar el <a href="/silabo">Sílabo</a>.
     </p>
-    <p>
-      PlainPage is a blog template based on Astro. If you want to use it, you
-      can find it on <a href="https://github.com/ChurchTao/PlainPage">Github</a
-      >.
-    </p>
-    <p>It has the following features:</p>
-    <ul>
-      <li>Minimal CSS, focused on text</li>
-      <li>Supports RSS subscription</li>
-      <li>Supports Sitemap</li>
-      <li>Supports SEO</li>
-      <li>Supports Dark Mode</li>
-      <li>Responsive layout</li>
+
+    <p>El curso está dividido en cuatro unidades principales:</p>
+    <ul class="list-disc list-inside">
+      <li><strong>Procesamiento de Imágenes</strong></li>
+      <li><strong>Geometría Computacional</strong></li>
+      <li><strong>Sistemas Gráficos</strong></li>
+      <li><strong>Visión Computacional</strong></li>
     </ul>
+
     <p>
-      Have fun, if you have any questions you can contact me at <a
-        href="mailto:swkzymlyy@gmail.com">swkzymlyy@gmail.com</a
-      >.
+      Si tienes alguna pregunta o comentario, no dudes en escribir en el Discord del curso. El link lo podrás encontrar en la seccion de anuncios en Canvas.
     </p>
+
   </div>
 </Layout>

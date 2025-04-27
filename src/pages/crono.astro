@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProgressBar from "../components/ProgressBar.astro";
+import WeekTable from "../components/WeekTable.astro";
+
+// Cálculo para la barra
+const fechaInicioCurso = new Date("2025-03-24");
+const today = new Date();
+const diasTranscurridos = Math.floor((today - fechaInicioCurso) / (1000 * 60 * 60 * 24));
+const semanaActual = Math.max(1, Math.min(16, Math.ceil(diasTranscurridos / 7)));
+const progreso = Math.min(100, (semanaActual / 16) * 100);
+---
+
+<Layout title="Cronograma del Curso">
+  <section class="prose mx-auto my-8">
+    <h2>Horarios de Clase</h2>
+    <ul class="list-disc list-inside">
+      <li><strong>Teoría:</strong> Lunes de 13:00 – 15:00 (A706)</li>
+    </ul>
+
+    <h3>Laboratorios</h3>
+    <ul class="list-disc list-inside">
+      <li><strong>Grupo 1:</strong> 
+        <ul class="list-disc ml-6">
+          <li>Martes de 14:00 – 16:00 (L507)</li>
+          <li>Jueves de 14:00 – 16:00 (L507)</li>
+        </ul>
+      </li>
+      <li><strong>Grupo 2:</strong> 
+        <ul class="list-disc ml-6">
+          <li>Miércoles de 15:00 – 17:00 (L507)</li>
+          <li>Viernes de 15:00 – 17:00 (L507)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Progreso del Curso</h2>
+    <ProgressBar progreso={progreso} />
+    <p><strong>Semana actual:</strong> {semanaActual} / 16</p>
+    <p><strong>Progreso del curso:</strong> {progreso.toFixed(1)}%</p>
+
+    <h2>Fechas Importantes</h2>
+    <WeekTable />
+  </section>
+</Layout>

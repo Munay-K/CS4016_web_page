@@ -2,15 +2,15 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 // 网站配置
-export const SITE_TITLE = "PlainPage";
-export const SITE_DESCRIPTION = "Welcome (. ❛ ᴗ ❛.)";
-export const COPYRIGHT = "© 2024 PlainPage All Rights Reserved";
+export const SITE_TITLE = "CS4016 - Computación Gráfica";
+export const SITE_DESCRIPTION = "Bienvenido a la pagina oficial de Computer Graphics - CS4016 (UTEC)";
+export const COPYRIGHT = "© 2025 CS4016 Team All Rights Reserved";
 export const ICP_NUMBER = "";
 
 // 社交媒体链接, 留空或注释=不显示
 export const SOCIAL_LINKS = {
-  Github: "https://github.com/churchTao",
-  Twitter: "https://twitter.com/yourusername",
+  Github: "https://github.com/Munay-K/CS4016_web_page/tree/main",
+  //   Twitter: "https://twitter.com/yourusername",
   //   LinkedIn: "https://www.linkedin.com/in/yourusername",
   //   Instagram: "https://www.instagram.com/yourusername",
   //   Facebook: "https://www.facebook.com/yourusername",
@@ -25,10 +25,12 @@ export const SEO_CONFIG = {
 
 // 导航配置
 export const NAV_ITEMS = [
-  { text: "Home", link: "/" },
-  { text: "Blog", link: "/blog" },
-  { text: "Tags", link: "/tags" },
-  { text: "About", link: "/about" },
+  { text: "Inicio", link: "/" },
+  { text: "Sobre el curso", link: "/about" },
+  { text: "Proyectos", link: "/blog" },
+  { text: "Recursos", link: "/about" },
+  { text: "Cronograma", link: "/crono" },
+  { text: "Contacto", link: "/about" },
 ];
 
 // 博客配置
