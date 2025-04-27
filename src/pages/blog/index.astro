@@ -1,34 +1,32 @@
 ---
-import CollectionLayout from "@components/blog/CollectionLayout.astro";
-import { getTaxaMultiset, getTaxa } from "@lib/taxonomyParser";
-import { getEntries, getIndex } from "@lib/contentParser";
-import { sortByDate } from "@lib/sortFunctions";
-import type { BlogEntry } from "@/types";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { generateURL } from "../../utils";
 
-const { slug } = Astro.params;
-const currentPageIndex = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
-
-const entryIndex = (await getIndex("blog")) as BlogEntry;
-const entries = (await getEntries("blog", sortByDate)) as BlogEntry[];
-
-const allCategories = await getTaxaMultiset("blog", "categories");
-const categories = await getTaxa("blog", "categories");
-const tags = await getTaxa("blog", "tags");
-
-const entriesPerPage = 4;
-const indexOfLastEntry = currentPageIndex * entriesPerPage;
-const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
-const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
-
-const pageCount: number = Math.ceil(entries.length / entriesPerPage);
+const posts = (await getCollection("blog", post => !post.data.hide)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
-<CollectionLayout
-  entryIndex={entryIndex}
-  entries={currentEntries}
-  categories={categories}
-  tags={tags}
-  allCategories={allCategories}
-  pageIndex={currentPageIndex}
-  pageCount={pageCount}
-/>
+<Layout>
+  <ul class="blog-posts">
+    {
+      posts.map(post => (
+        <li>
+          <span>
+            <i>
+              <FormattedDate date={post.data.pubDate} />
+            </i>
+          </span>
+          <a
+            href={generateURL(`/blog/${post.id}/`)}
+            transition:name={`post-title-${post.id}`}
+          >
+            {post.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

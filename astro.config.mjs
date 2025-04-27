@@ -1,40 +1,21 @@
-import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import AutoImport from "astro-auto-import";
+// @ts-check
 import { defineConfig } from "astro/config";
-import remarkCollapse from "remark-collapse";
-import remarkToc from "remark-toc";
-import rehypeKatex from "rehype-katex";
-import remarkMath from "remark-math";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://janedoe.com",
-  base: "/",
-  trailingSlash: "ignore",
-  prefetch: {
-    prefetchAll: true
-  },
-  integrations: [react(), sitemap(), tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), AutoImport({
-    imports: ["@components/common/Button.astro", "@shortcodes/Accordion", "@shortcodes/Notice", "@shortcodes/Youtube", "@shortcodes/Tabs", "@shortcodes/Tab"]
-  }), mdx()],
+  site: "https://churchTao.github.io",
+  // 部署到 github pages 时，需要设置 base, 自己使用时，可以酌情设置
+  base: "/PlainPage",
+  integrations: [mdx(), sitemap()],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, {
-      test: "Table of contents"
-    }], remarkMath],
-    rehypePlugins: [[rehypeKatex, {}]],
     shikiConfig: {
-      themes: { // https://shiki.style/themes
-        light: "light-plus",
-        dark: "dark-plus",
-      } 
+      themes: {
+        light: "min-light",
+        dark: "github-dark",
+      },
+      wrap: true,
     },
-    extendDefaultPlugins: true
   },
 });
