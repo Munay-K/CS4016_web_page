@@ -1,0 +1,33 @@
+---
+/* No necesitas lógica server-side */
+---
+
+<script is:inline>
+  window.addEventListener('load', () => {
+    const mensajesNormales = [
+      "🐧 Cada vez que usas Windows, un pingüino llora.",
+      "📚 Examen E1: 90% suerte, 10% estudiar.",
+      "🎯 Entrega de proyecto: ahora o a las 2AM como siempre.",
+      "👻 Programar en VSCode no te hace hacker, pero se agradece el intento.",
+      "🐢 Velocidad detectada: lento como Windows Update.",
+      "💻 Preferiste Windows... eres valiente, pero imprudente.",
+      "🚀 Proyectos grupales: 1 trabaja, 3 observan.",
+    ];
+
+    const esWindows = navigator.userAgent.includes('Windows');
+
+    const mensaje = esWindows
+      ? "💀 DIOS TE JUZGARÁ POR UTILIZAR WINDOWS"
+      : mensajesNormales[Math.floor(Math.random() * mensajesNormales.length)];
+
+    const div = document.createElement('div');
+    div.className = "fixed bottom-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg animate-bounce z-50 max-w-xs text-center";
+    div.innerText = mensaje;
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+      div.remove();
+    }, 8000); // desaparece después de 8 segundos
+  });
+</script>

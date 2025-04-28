@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TechJudge from "../components/TechJudge.astro";
 import { SITE_DESCRIPTION } from "../consts";
 ---
 
 <Layout title="Inicio">
+  <TechJudge />
   <div class="prose mx-auto">
     <p>{SITE_DESCRIPTION}</p>
 
