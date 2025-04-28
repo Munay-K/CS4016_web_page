@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CS4016 - Computación Gráfica</title><description>Bienvenido a la pagina oficial de Computer Graphics - CS4016 (UTEC)</description><link>https://cs4016.github.io/</link><item><title>Hello world</title><link>https://cs4016.github.io/blog/hello/</link><guid isPermaLink="true">https://cs4016.github.io/blog/hello/</guid><description>Show how to use Plain Page</description><pubDate>Tue, 17 Dec 2024 05:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;print(&quot;Hello world&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a code block.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;List item 1&lt;/li&gt;
+&lt;li&gt;List item 2&lt;/li&gt;
+&lt;li&gt;List item 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Numbered list item 1&lt;/li&gt;
+&lt;li&gt;Numbered list item 2&lt;/li&gt;
+&lt;li&gt;Numbered list item 3&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.google.com&quot;&gt;Link to Google&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item></channel></rss>

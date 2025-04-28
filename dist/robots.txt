@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cs4016.github.io/sitemap-index.xml
