@@ -1,5 +1,4 @@
 ---
-/* Calculadora de nota final, mejorada */
 ---
 
 <section class="prose mx-auto my-8">
@@ -9,66 +8,57 @@
   <form id="gradeCalculator" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
     <div>
       <label for="e1" class="font-semibold">Examen Teórico E1 (15%)</label>
-      <input type="number" step="0.01" id="e1" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="e1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="e2" class="font-semibold">Examen Teórico E2 (15%)</label>
-      <input type="number" step="0.01" id="e2" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="e2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="pc1" class="font-semibold">Práctica Calificada PC1 (2.5%)</label>
-      <input type="number" step="0.01" id="pc1" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="pc1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="pc2" class="font-semibold">Práctica Calificada PC2 (2.5%)</label>
-      <input type="number" step="0.01" id="pc2" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="pc2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="pc3" class="font-semibold">Práctica Calificada PC3 (2.5%)</label>
-      <input type="number" step="0.01" id="pc3" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="pc3" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="pc4" class="font-semibold">Práctica Calificada PC4 (2.5%)</label>
-      <input type="number" step="0.01" id="pc4" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="pc4" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="p1" class="font-semibold">Proyecto P1 (10%)</label>
-      <input type="number" step="0.01" id="p1" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="p1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
     <div>
       <label for="p2" class="font-semibold">Proyecto P2 (40%)</label>
-      <input type="number" step="0.01" id="p2" min="0" max="20" class="input" placeholder="Nota de 0 a 20">
+      <input type="number" id="p2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
     </div>
 
     <div class="col-span-full flex flex-col items-center mt-4">
-      <button id="calcular-btn" type="button" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition">
+      <button type="button" id="calcular-btn" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition">
         Calcular Nota Final
       </button>
+      <h3 id="resultado" class="mt-4 text-lg font-bold"></h3>
     </div>
   </form>
-
-  <div id="resultados" class="mt-8 hidden">
-    <h3 class="text-lg font-bold">Resultados:</h3>
-    <ul class="list-disc list-inside mt-2">
-      <li><strong>Nota de Teoría:</strong> <span id="nota-teoria"></span>/20</li>
-      <li><strong>Nota de Prácticas Calificadas:</strong> <span id="nota-practicas"></span>/20</li>
-      <li><strong>Nota de Proyecto:</strong> <span id="nota-proyecto"></span>/20</li>
-      <li><strong>Nota Final:</strong> <span id="nota-final" class="font-bold"></span>/20</li>
-    </ul>
-    <p id="mensaje-final" class="mt-4 text-xl"></p>
-  </div>
 </section>
 
 <script is:inline>
   window.addEventListener('load', () => {
-    document.getElementById('calcular-btn').addEventListener('click', function() {
+    const btn = document.getElementById('calcular-btn');
+    btn.addEventListener('click', () => {
       const campos = ['e1', 'e2', 'pc1', 'pc2', 'pc3', 'pc4', 'p1', 'p2'];
       let notas = {};
 
       for (let campo of campos) {
-        let valor = parseFloat(document.getElementById(campo).value);
+        const valor = parseFloat(document.getElementById(campo).value);
         if (isNaN(valor) || valor < 0 || valor > 20) {
-          alert("⚠️ Error: Todas las notas deben estar entre 0 y 20.");
+          alert('⚠️ Error: Todas las notas deben estar entre 0 y 20.');
           return;
         }
         notas[campo] = valor;
@@ -78,25 +68,25 @@
       const practicas = (notas.pc1 + notas.pc2 + notas.pc3 + notas.pc4) / 4;
       const proyecto = (notas.p1 * 0.2) + (notas.p2 * 0.8);
 
-      const aprobado = teoria >= 11 && practicas >= 11 && proyecto >= 11;
       const notaFinal = (teoria * 0.30) + (practicas * 0.20) + (proyecto * 0.50);
 
-      // Mostrar resultados
-      document.getElementById('nota-teoria').textContent = teoria.toFixed(2);
-      document.getElementById('nota-practicas').textContent = practicas.toFixed(2);
-      document.getElementById('nota-proyecto').textContent = proyecto.toFixed(2);
-      document.getElementById('nota-final').textContent = notaFinal.toFixed(2);
+      let mensaje = `
+✅ Resultados Parciales:<br><br>
+- Nota de Teoría: ${teoria.toFixed(2)}/20<br>
+- Nota de Prácticas Calificadas: ${practicas.toFixed(2)}/20<br>
+- Nota de Proyecto: ${proyecto.toFixed(2)}/20<br><br>
+🎯 Nota Final: ${notaFinal.toFixed(2)}/20<br><br>
+`;
 
-      const mensajeFinal = document.getElementById('mensaje-final');
-      if (aprobado) {
-        mensajeFinal.textContent = "✅ ¡Aprobaste todas las partes!";
-        mensajeFinal.style.color = 'green';
+      if (teoria < 11 || practicas < 11 || proyecto < 11) {
+        mensaje += "❌ <strong>No aprobado</strong>: debes obtener al menos 11/20 en cada sección.";
+        document.getElementById('resultado').style.color = 'red';
       } else {
-        mensajeFinal.textContent = "❌ No aprobado: debes obtener al menos 11/20 en Teoría, Prácticas y Proyecto.";
-        mensajeFinal.style.color = 'red';
+        mensaje += "✅ <strong>¡Aprobaste todas las secciones!</strong>";
+        document.getElementById('resultado').style.color = 'green';
       }
 
-      document.getElementById('resultados').classList.remove('hidden');
+      document.getElementById('resultado').innerHTML = mensaje;
     });
   });
 </script>
