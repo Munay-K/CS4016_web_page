@@ -87,9 +87,9 @@ export const NAV_ITEMS = [
 export const BLOG_CONFIG = {
   locale: "en-us", // 日期格式化语言
   authorName: "Author Name", // 作者名称
-  email: "mailto:your-email@example.com",
+  email: "mailto:ebiagioli@utec.edu.pe",
   tags: {
-    title: "Tags", // 标签页面标题
+    title: "[CS4016] Consulta sobre el curso", // 标签页面标题
     description: "All the tags used in posts.", // 标签页面描述
   },
 };

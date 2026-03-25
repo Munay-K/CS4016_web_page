@@ -1,0 +1,18 @@
+
+[
+  {
+    "nombre": "Juan Pérez",
+    "periodo": "2024-1",
+    "orden_merito": "primero"
+  },
+  {
+    "nombre": "María García",
+    "periodo": "2024-1",
+    "orden_merito": "segunda"
+  },
+  {
+    "nombre": "Carlos López",
+    "periodo": "2023-2",
+    "orden_merito": "primero"
+  }
+]

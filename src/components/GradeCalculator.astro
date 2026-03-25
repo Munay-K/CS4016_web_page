@@ -1,62 +1,126 @@
 ---
+// sin props
 ---
 
-<section class="prose mx-auto my-8">
+<section class="grade-section">
   <h2>Calculadora de Nota Final</h2>
   <p>Introduce tus notas (entre 0 y 20) para estimar tu promedio final en el curso:</p>
 
-  <form id="gradeCalculator" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-    <div>
-      <label for="e1" class="font-semibold">Examen Teórico E1 (15%)</label>
-      <input type="number" id="e1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+  <form id="gradeCalculator" class="grade-form">
+    <div class="field">
+      <label for="e1">Examen Teórico E1 (15%)</label>
+      <input type="number" id="e1" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="e2" class="font-semibold">Examen Teórico E2 (15%)</label>
-      <input type="number" id="e2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="e2">Examen Teórico E2 (15%)</label>
+      <input type="number" id="e2" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="pc1" class="font-semibold">Práctica Calificada PC1 (2.5%)</label>
-      <input type="number" id="pc1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="pc1">Práctica Calificada PC1 (2.5%)</label>
+      <input type="number" id="pc1" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="pc2" class="font-semibold">Práctica Calificada PC2 (2.5%)</label>
-      <input type="number" id="pc2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="pc2">Práctica Calificada PC2 (2.5%)</label>
+      <input type="number" id="pc2" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="pc3" class="font-semibold">Práctica Calificada PC3 (2.5%)</label>
-      <input type="number" id="pc3" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="pc3">Práctica Calificada PC3 (2.5%)</label>
+      <input type="number" id="pc3" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="pc4" class="font-semibold">Práctica Calificada PC4 (2.5%)</label>
-      <input type="number" id="pc4" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="pc4">Práctica Calificada PC4 (2.5%)</label>
+      <input type="number" id="pc4" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="p1" class="font-semibold">Proyecto P1 (10%)</label>
-      <input type="number" id="p1" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="p1">Proyecto P1 (10%)</label>
+      <input type="number" id="p1" placeholder="Nota de 0 a 20" />
     </div>
-    <div>
-      <label for="p2" class="font-semibold">Proyecto P2 (40%)</label>
-      <input type="number" id="p2" class="input border border-gray-300 p-2 w-full" placeholder="Nota de 0 a 20" />
+    <div class="field">
+      <label for="p2">Proyecto P2 (40%)</label>
+      <input type="number" id="p2" placeholder="Nota de 0 a 20" />
     </div>
 
-    <div class="col-span-full flex flex-col items-center mt-4">
-      <button type="button" id="calcular-btn" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition">
-        Calcular Nota Final
-      </button>
-      <h3 id="resultado" class="mt-4 text-lg font-bold"></h3>
+    <div class="form-footer">
+      <button type="button" id="calcular-btn">Calcular Nota Final</button>
+      <h3 id="resultado"></h3>
     </div>
   </form>
 </section>
 
+<style>
+.grade-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.grade-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.field input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+button#calcular-btn {
+  background-color: #01BEFF;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button#calcular-btn:hover {
+  background-color: #0197d6;
+}
+
+#resultado {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+</style>
+
 <script is:inline>
-  window.addEventListener('load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('calcular-btn');
+    const resultado = document.getElementById('resultado');
+
+    if (!btn || !resultado) return;
+
     btn.addEventListener('click', () => {
       const campos = ['e1', 'e2', 'pc1', 'pc2', 'pc3', 'pc4', 'p1', 'p2'];
       let notas = {};
 
       for (let campo of campos) {
-        const valor = parseFloat(document.getElementById(campo).value);
+        const valor = parseFloat(document.getElementById(campo)?.value);
         if (isNaN(valor) || valor < 0 || valor > 20) {
           alert('⚠️ Error: Todas las notas deben estar entre 0 y 20.');
           return;
@@ -67,7 +131,6 @@
       const teoria = (notas.e1 * 0.5) + (notas.e2 * 0.5);
       const practicas = (notas.pc1 + notas.pc2 + notas.pc3 + notas.pc4) / 4;
       const proyecto = (notas.p1 * 0.2) + (notas.p2 * 0.8);
-
       const notaFinal = (teoria * 0.30) + (practicas * 0.20) + (proyecto * 0.50);
 
       let mensaje = `
@@ -80,13 +143,13 @@
 
       if (teoria < 11 || practicas < 11 || proyecto < 11) {
         mensaje += "❌ <strong>No aprobado</strong>: debes obtener al menos 11/20 en cada sección.";
-        document.getElementById('resultado').style.color = 'red';
+        resultado.style.color = 'red';
       } else {
         mensaje += "✅ <strong>¡Aprobaste todas las secciones!</strong>";
-        document.getElementById('resultado').style.color = 'green';
+        resultado.style.color = 'green';
       }
 
-      document.getElementById('resultado').innerHTML = mensaje;
+      resultado.innerHTML = mensaje;
     });
   });
 </script>

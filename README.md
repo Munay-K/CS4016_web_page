@@ -89,7 +89,7 @@ export const NAV_ITEMS = [
 export const BLOG_CONFIG = {
   locale: "en-us", // date format language
   authorName: "Author Name", // author name
-  email: "mailto:your-email@example.com",
+  email: "mailto:ebiagioli@utec.edu.pe",
   tags: {
     title: "Tags", // tags page title
     description: "All the tags used in posts.", // tags page description

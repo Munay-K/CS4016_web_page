@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IconLink from "../components/IconLink.astro";
+---
+
+<Layout title="Equipo Docente">
+  <section class="staff-section">
+    <h2>Equipo Docente del Curso</h2>
+
+    <div class="staff-list">
+      <div class="staff-card">
+        <h3>Eric Biagioli</h3>
+        <p><strong>Profesor del curso</strong></p>
+        <p>ebiagioli@utec.edu.pe</p>
+        <p>Oficina P319</p>
+        <div class="icon-wrapper">
+          <IconLink name="LinkedIn" href="https://www.linkedin.com/in/ericbiagioli" label="LinkedIn" />
+        </div>
+      </div>
+
+      <div class="staff-card">
+        <h3>Gonzalo Alfaro Caso</h3>
+        <p><strong>Asistente de profesor (TA)</strong></p>
+        <p>galfaro@utec.edu.pe</p>
+        <p>Oficina P319</p>
+        <div class="icon-wrapper">
+          <IconLink name="LinkedIn" href="https://www.linkedin.com/in/gonzaloalfacaso" label="LinkedIn" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.staff-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.staff-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.staff-section p {
+  margin-bottom: 1.5rem;
+}
+
+.staff-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.staff-card {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.staff-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
+}
+
+.staff-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #231F20;
+}
+
+.staff-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #01BEFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.staff-card a:hover {
+  text-decoration: underline;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+</style>

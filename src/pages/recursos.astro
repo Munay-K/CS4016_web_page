@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Recursos del Curso">
+  <section class="recursos-section">
+    <h2>Lecturas Recomendadas por Semana</h2>
+    <table class="lecturas-tabla">
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Tema</th>
+          <th>Lectura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Introducción al curso</td>
+          <td>Capítulo 1 – “Fundamentos de la computación”</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Lógica booleana</td>
+          <td>Artículo: “Cómo pensar en binario”</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Álgebra de circuitos</td>
+          <td>Capítulo 3 – “Digital Design”, Morris Mano</td>
+        </tr>
+        <!-- Agrega más filas según sea necesario -->
+      </tbody>
+    </table>
+
+    <h2 style="margin-top: 3rem;">Libros Recomendados</h2>
+    <div class="libros-grid">
+      <div class="libro-card">
+        <h3>Computer Organization and Design</h3>
+        <p>David A. Patterson & John L. Hennessy</p>
+        <p>5th Edition – Morgan Kaufmann</p>
+      </div>
+
+      <div class="libro-card">
+        <h3>Digital Design</h3>
+        <p>M. Morris Mano</p>
+        <p>5th Edition – Pearson</p>
+      </div>
+
+      <div class="libro-card">
+        <h3>Introduction to Computing Systems</h3>
+        <p>Yale N. Patt & Sanjay J. Patel</p>
+        <p>3rd Edition – McGraw-Hill</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.recursos-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.lecturas-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.lecturas-tabla th,
+.lecturas-tabla td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.lecturas-tabla th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+.libros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.libro-card {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+</style>
