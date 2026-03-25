@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { generateURL } from "../../utils";
+
+const posts = (await getCollection("proyectos", post => !post.data.hide))
+
+// Obtener lista única de periodos
+const periodosUnicos = [...new Set(posts.map(post => post.data.periodo))].sort().reverse();
+
+const { searchParams } = new URL(Astro.url);
+const periodoActivo = searchParams.get("periodo") || "Todos";
+
+const proyectosFiltrados = periodoActivo === "Todos"
+  ? posts
+  : posts.filter(post => post.data.periodo === periodoActivo);
+---
+
+<Layout title="Proyectos del Curso">
+  <section class="proyectos-section">
+    <h2>Proyectos</h2>
+
+    <div class="tabs">
+      <a class={periodoActivo === "Todos" ? "tab active" : "tab"} href="/proyectos">Todos</a>
+      {
+        periodosUnicos.map(p => (
+          <a class={periodoActivo === p ? "tab active" : "tab"} href={`/proyectos?periodo=${p}`}>
+            {p}
+          </a>
+        ))
+      }
+    </div>
+
+    <ul class="proyecto-lista">
+      {
+        proyectosFiltrados.map(post => (
+          <li class="proyecto-card">
+            <h3>
+              <a href={generateURL(`/proyectos/${post.id}/`)}>
+                {post.data.title}
+              </a>
+            </h3>
+            <p><strong>Periodo:</strong> {post.data.periodo}</p>
+            <p><strong>Integrantes:</strong> {post.data.integrantes?.join(", ")}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
+
+<style>
+.proyectos-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #231F20;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.tab:hover {
+  background-color: #e0e7ff;
+}
+
+.tab.active {
+  background-color: #01BEFF;
+  color: white;
+}
+
+.proyecto-lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.proyecto-card {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+</style>

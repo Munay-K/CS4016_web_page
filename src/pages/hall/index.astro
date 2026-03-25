@@ -1,0 +1,270 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { generateURL } from "../../utils";
+import alumnosData from "../../content/alumnos.json";
+
+const proyectos = (await getCollection("proyectos", post => !post.data.hide));
+
+// Obtener lista única de periodos de ambas colecciones
+const periodosProyectos = proyectos.map(post => post.data.periodo);
+const periodosAlumnos = alumnosData.map(estudiante => estudiante.periodo);
+const periodosUnicos = [...new Set([...periodosProyectos, ...periodosAlumnos])].sort().reverse();
+---
+
+<Layout title="Proyectos y alumnos del Curso">
+  <section class="contenido-section">
+
+    <div class="tabs" id="period-tabs">
+      <a class="tab active" data-period="Todos" href="#">Todos</a>
+      {
+        periodosUnicos.map(p => (
+          <a class="tab" data-period={p} href="#">
+            {p}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="two-columns">
+      <!-- Sección de Proyectos -->
+      <div class="seccion">
+        <h2>Proyectos <span id="proyectos-count">({proyectos.length})</span></h2>
+        <ul class="lista" id="proyectos-lista">
+          {
+            proyectos.map(proyecto => (
+              <li class="card" data-period={proyecto.data.periodo}>
+                <h3>
+                  <a href={generateURL(`/proyectos/${proyecto.id}/`)}>
+                    {proyecto.data.title}
+                  </a>
+                </h3>
+                <p><strong>Periodo:</strong> {proyecto.data.periodo}</p>
+                {proyecto.data.integrantes && (
+                  <p><strong>Integrantes:</strong> {proyecto.data.integrantes.join(", ")}</p>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Sección de alumnos -->
+      <div class="seccion">
+        <h2>G20 <span id="alumnos-count">({alumnosData.length})</span></h2>
+        <ul class="lista" id="alumnos-lista">
+          {
+            alumnosData.map(estudiante => (
+              <li class="card" data-period={estudiante.periodo}>
+                <h3>{estudiante.nombre}</h3>
+                <p><strong>Periodo:</strong> {estudiante.periodo}</p>
+                {estudiante.orden_merito && (
+                  <p><strong>Orden de merito:</strong> {estudiante.orden_merito}</p>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function filterByPeriod(period) {
+    // Filter proyectos
+    const proyectosItems = document.querySelectorAll('#proyectos-lista .card');
+    let proyectosVisible = 0;
+    
+    proyectosItems.forEach(item => {
+      if (period === 'Todos' || item.dataset.period === period) {
+        item.style.display = '';
+        proyectosVisible++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    
+    // Filter alumnos
+    const alumnosItems = document.querySelectorAll('#alumnos-lista .card');
+    let alumnosVisible = 0;
+    
+    alumnosItems.forEach(item => {
+      if (period === 'Todos' || item.dataset.period === period) {
+        item.style.display = '';
+        alumnosVisible++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    
+    // Update counts
+    const proyectosCountSpan = document.getElementById('proyectos-count');
+    const alumnosCountSpan = document.getElementById('alumnos-count');
+    
+    if (proyectosCountSpan) {
+      proyectosCountSpan.textContent = `(${proyectosVisible})`;
+    }
+    
+    if (alumnosCountSpan) {
+      alumnosCountSpan.textContent = `(${alumnosVisible})`;
+    }
+    
+    // Update active tab styling
+    const tabs = document.querySelectorAll('#period-tabs .tab');
+    tabs.forEach(tab => {
+      if (tab.dataset.period === period) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+    
+    // Update URL without reloading
+    const url = new URL(window.location.href);
+    if (period === 'Todos') {
+      url.searchParams.delete('periodo');
+    } else {
+      url.searchParams.set('periodo', period);
+    }
+    window.history.pushState({}, '', url);
+  }
+  
+  // Get period from URL on page load
+  const urlParams = new URLSearchParams(window.location.search);
+  const periodoFromUrl = urlParams.get('periodo');
+  
+  if (periodoFromUrl) {
+    filterByPeriod(periodoFromUrl);
+  }
+  
+  // Add click handlers to tabs
+  const tabs = document.querySelectorAll('#period-tabs .tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const period = tab.dataset.period;
+      filterByPeriod(period);
+    });
+  });
+  
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', () => {
+    const newUrlParams = new URLSearchParams(window.location.search);
+    const newPeriodo = newUrlParams.get('periodo') || 'Todos';
+    filterByPeriod(newPeriodo);
+  });
+</script>
+
+<style>
+.contenido-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #231F20;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background-color: #e0e7ff;
+}
+
+.tab.active {
+  background-color: #01BEFF;
+  color: white;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.seccion h2 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #01BEFF;
+  color: #231F20;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.card h3 a {
+  color: #01BEFF;
+  text-decoration: none;
+}
+
+.card h3 a:hover {
+  text-decoration: underline;
+}
+
+.card p {
+  margin: 0.25rem 0;
+  color: #4b5563;
+}
+
+.card a {
+  color: #01BEFF;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.empty-message {
+  text-align: center;
+  color: #9ca3af;
+  padding: 2rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+</style>

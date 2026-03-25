@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://munay-k.github.io/sitemap-index.xml

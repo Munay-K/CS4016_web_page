@@ -10,14 +10,14 @@ const semanaActual = Math.min(16, Math.max(1, Math.floor(diasDesdeInicio / 7) + 
 ---
 
 <!-- CONTENEDOR RESPONSIVE -->
-<div class="overflow-x-auto">
-  <table class="table-auto w-full text-left border-collapse rounded-lg overflow-hidden shadow-md min-w-[600px]">
-    <thead class="bg-blue-600 text-white sticky top-0 z-10">
+<div class="table-wrapper">
+  <table class="week-table">
+    <thead>
       <tr>
-        <th class="border border-gray-300 px-4 py-3">Semana</th>
-        <th class="border border-gray-300 px-4 py-3">Fecha</th>
-        <th class="border border-gray-300 px-4 py-3">Evento</th>
-        <th class="border border-gray-300 px-4 py-3">Detalles</th>
+        <th>Semana</th>
+        <th>Fecha</th>
+        <th>Evento</th>
+        <th>Detalles</th>
       </tr>
     </thead>
     <tbody>
@@ -25,15 +25,15 @@ const semanaActual = Math.min(16, Math.max(1, Math.floor(diasDesdeInicio / 7) + 
         const semana = i + 1;
         const eventos = eventosPorSemana[semana] || [];
         const esSemanaActual = semana === semanaActual;
-        const claseFila = esSemanaActual ? "bg-yellow-300 text-black font-bold" : "";
+        const claseFila = esSemanaActual ? "current-week" : "";
 
         if (eventos.length === 0) {
           return (
-            <tr class={`even:bg-gray-100 hover:bg-blue-100 ${claseFila}`}>
-              <td class="border border-gray-300 px-4 py-2">{semana}</td>
-              <td class="border border-gray-300 px-4 py-2">-</td>
-              <td class="border border-gray-300 px-4 py-2">📄 Sin eventos</td>
-              <td class="border border-gray-300 px-4 py-2">-</td>
+            <tr class={`even-row ${claseFila}`}>
+              <td>{semana}</td>
+              <td>-</td>
+              <td>📄 Sin eventos</td>
+              <td>-</td>
             </tr>
           );
         }
@@ -46,11 +46,11 @@ const semanaActual = Math.min(16, Math.max(1, Math.floor(diasDesdeInicio / 7) + 
             year: 'numeric'
           });
           return (
-            <tr class={`even:bg-gray-100 hover:bg-blue-100 ${claseFila}`}>
-              <td class="border border-gray-300 px-4 py-2">{semana}</td>
-              <td class="border border-gray-300 px-4 py-2">{fechaFormateada}</td>
-              <td class="border border-gray-300 px-4 py-2">{evento}</td>
-              <td class="border border-gray-300 px-4 py-2">{detalles}</td>
+            <tr class={`even-row ${claseFila}`}>
+              <td>{semana}</td>
+              <td>{fechaFormateada}</td>
+              <td>{evento}</td>
+              <td>{detalles}</td>
             </tr>
           );
         });
