@@ -287,3 +287,63 @@ pre.astro-code {
   transition: width 0.3s ease-in-out;
 }
 
+html[data-theme="dark"] .proyecto-card,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .staff-card,
+html[data-theme="dark"] .libro-card {
+  background-color: rgba(30, 41, 54, 0.9) !important;
+  border-color: #4b5a69 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-theme="dark"] .tab {
+  background-color: rgba(39, 50, 64, 0.95) !important;
+  color: #e6edf3 !important;
+}
+
+html[data-theme="dark"] .tab:hover {
+  background-color: rgba(56, 69, 85, 0.95) !important;
+}
+
+html[data-theme="dark"] .tab.active {
+  background-color: #01beff !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .lecturas-tabla th {
+  background-color: rgba(39, 50, 64, 0.95) !important;
+  color: #e6edf3 !important;
+}
+
+html[data-theme="dark"] .lecturas-tabla td,
+html[data-theme="dark"] .lecturas-tabla th {
+  border-color: #4b5a69 !important;
+}
+
+html[data-theme="dark"] .week-table {
+  background-color: rgba(30, 41, 54, 0.9);
+}
+
+html[data-theme="dark"] .week-table th,
+html[data-theme="dark"] .week-table td {
+  border-color: #4b5a69;
+}
+
+html[data-theme="dark"] .week-table tr.even-row {
+  background-color: rgba(39, 50, 64, 0.95);
+}
+
+html[data-theme="dark"] .week-table tr:hover {
+  background-color: rgba(56, 69, 85, 0.95);
+}
+
+html[data-theme="dark"] .progress-container {
+  background-color: rgba(39, 50, 64, 0.95);
+}
+
+html[data-theme="dark"] .field input {
+  background-color: rgba(18, 25, 33, 0.95);
+  color: #e6edf3;
+  border-color: #4b5a69;
+}
+

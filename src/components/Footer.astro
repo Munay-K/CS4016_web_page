@@ -1,22 +1,9 @@
 ---
-import { COPYRIGHT, ICP_NUMBER, SOCIAL_LINKS } from "../consts";
+import { SOCIAL_LINKS } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 ---
 
 <footer>
-  <br />
-  <small
-    >{COPYRIGHT && `${COPYRIGHT}`}
-    {COPYRIGHT && ICP_NUMBER && "｜"}
-    {
-      ICP_NUMBER && (
-        <a href="https://beian.miit.gov.cn/" target="_blank">
-          {ICP_NUMBER}
-        </a>
-      )
-    }
-  </small>
-  <br />
   <div class="social-links" role="navigation" aria-label="social links">
     {
       Object.entries(SOCIAL_LINKS).map(([key, value]) => {
