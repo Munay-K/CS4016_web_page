@@ -110,6 +110,19 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Deploy to GitHub Pages
+
+This repository is configured to deploy automatically to GitHub Pages using GitHub Actions.
+
+1. Push your changes to the `main` branch.
+2. In GitHub, open **Settings → Pages**.
+3. Set **Source** to **GitHub Actions**.
+4. Wait for the workflow in `.github/workflows/deploy.yml` to finish.
+
+Your site will be published at:
+
+- `https://munay-k.github.io/CS4016_web_page/`
+
 ## Credit
 
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).

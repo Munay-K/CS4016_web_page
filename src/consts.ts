@@ -4,7 +4,7 @@
 // 网站配置
 export const SITE_TITLE = "CS4016 - Computación Gráfica";
 export const SITE_DESCRIPTION = "Bienvenido a la pagina oficial de Computer Graphics - CS4016 (UTEC)";
-//export const COPYRIGHT = "© 2025 CS4016 Team All Rights Reserved";
+export const COPYRIGHT = "© 2026 CS4016 Team All Rights Reserved";
 export const ICP_NUMBER = "";
 
 // 社交媒体链接, 留空或注释=不显示
