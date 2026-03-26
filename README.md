@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="./public/favicon.svg" alt="PlainPage" width="100" />
-</div>
-
 ## Guía rápida para editar contenido 
 
 Esta sección explica dónde editar cada página del sitio y cómo agregar contenido nuevo.
@@ -122,22 +118,3 @@ This repository is configured to deploy automatically to GitHub Pages using GitH
 Your site will be published at:
 
 - `https://munay-k.github.io/CS4016_web_page/`
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
-
-Inspired by [satnaing/astro-paper](https://github.com/satnaing/astro-paper).
-
-Based on [astro](https://astro.build).
-
-## Sites using this theme
-
-- [毛桃的小世界](https://毛桃.top)
-- [Mobai's Blog](https://blog.loliowo.com)
-
-👏 You can submit your site to the list by creating a PR.
-
-## 📜 License
-
-Licensed under the [MIT](./LICENSE) License, Copyright © 2024
